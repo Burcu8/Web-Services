@@ -43,7 +43,15 @@ def read_contents():
 @app.put("/content/{content_id}")
 def update_content(content_id: str, update_content: Content):
     result = collection.update_one({"_id": content_id}, {"$set": update_content.model_dump()})
-    return result
+    
+    if result.modified_count == 1:
+        # Get the details of the updated content when the update is successful
+        updated_document = collection.find_one({"_id": content_id})
+        return {"massage": "content updated succesfully", "updated content": updated_document}
+
+    else:
+        raise HTTPException(status_code=404, detail = "Content not found")
+
 
 #içerik silmek için
 @app.delete("/content/{content_id}")
