@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
-from pymongo import MongoClient
-from pydantic import BaseModel
+from models.models import Content
+from database.mongodb import collection
 
 app = FastAPI()
 
@@ -10,25 +10,10 @@ def read_rood():
     return {"message": "Hello, FastAPI!"}
 
 
-# MongoDB bağlantısı
-client = MongoClient("mongodb://localhost:27017/")
-db = client["film_db"] 
-collection = db["contents"]
-
-
-class Content(BaseModel):
-    title: str
-    year: int
-    length: int
-    producer: str
-    description: str
-    genre: str
-
-
 #yeni içerik eklemek içim
 @app.post("/content/")
 def create_content(content: Content):
-    content_id = collection.insert_one(content.model_dump()).inserted_id  #dict() yerine model_dump kullanıldı.
+    content_id = collection.insert_many(content.model_dump()).inserted_id  #dict() yerine model_dump kullanıldı.
     return {"message": "Content created succesfully", "content_id": str(content_id)}
 
 
