@@ -42,4 +42,9 @@ def update_content(content_id: str, update_content: Content):
 @app.delete("/content/{content_id}")
 def delete_content(content_id: str):
     result = collection.delete_one({"_id": content_id})
-    return {"message": "Content deleted successfully", "deleted_content": result}
+    
+    if result.deleted_count == 1:
+        return {"message": "Content deleted successfully", "deleted_content": result}
+    else:
+        return HTTPException(status_code=404, detail= "content not found")
+
