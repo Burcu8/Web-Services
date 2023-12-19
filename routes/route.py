@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Path
 from models.models import Content
 from database.mongodb import collection
 from bson import ObjectId
@@ -28,7 +28,7 @@ async def read_contents():
 
 #READ DETAIL
 @router.get("/content/{content_id}")
-async def read_contents(content_id: str):
+async def read_contents(content_id: str = Path(None, description="The ID of the content you'd like to view")):
    # return {"content" : []}
     contents = list(collection.find({"_id": ObjectId(content_id)}))
     for content in contents:
@@ -51,7 +51,7 @@ async def update_content(content_id: str, update_content: Content):
 
 #DELETE
 @router.delete("/content/{content_id}")
-async def delete_content(content_id: str):
+async def delete_content(content_id: str = Path(None, description="The ID of the content you'd like to delete")):
     result = collection.find_one_and_delete({"_id": ObjectId(content_id)})
     result["_id"] = str(result["_id"])
 
