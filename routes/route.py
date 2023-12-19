@@ -9,6 +9,11 @@ router = APIRouter()
 #CREATE
 @router.post("/content/")
 async def create_content(content: Content):
+    #check duplicate content
+    existing_content = collection.find_one({"title": content.title})
+    if existing_content:
+        raise HTTPException(status_code=400, detail="Content with the same title already exists")
+    
     content_id = collection.insert_one(dict(content)).inserted_id  
     return {"message": "Content created succesfully", "content_id": str(content_id)}
 
