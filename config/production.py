@@ -1,0 +1,3 @@
+config = {
+    'host' : 'myapp.com'
+}
