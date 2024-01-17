@@ -4,7 +4,14 @@ from database.mongodb import collection
 from bson import ObjectId
 from routes.route import router
 
-app = FastAPI()
 
-#APIRouter'ı uygulamaya ekle 
-app.include_router(router)
+
+
+def create_app():
+    app = FastAPI()
+    #APIRouter'ı uygulamaya ekle 
+    app.include_router(router)
+    return app
+
+
+create_app()
