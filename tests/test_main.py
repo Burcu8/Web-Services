@@ -16,10 +16,10 @@ def test_read_contents_success_and_verify_count():
     assert response.status_code == 200
 
     dbclient = MongoClient("mongodb://localhost:27017/")
-    db = dbclient["film_db"]
-    collection = db["contents"]
+    db = dbclient["film_db_test"]
+    collection = db["films"]
     expected_count = collection.count_documents({})
-    assert len(response.json()['contents']) == expected_count
+    assert len(response.json()['films']) == expected_count
 
 def test_create_content_success():
     
@@ -36,8 +36,8 @@ def test_create_content_success():
     assert response.status_code == 200
     
     dbclient = MongoClient("mongodb://localhost:27017/")
-    db = dbclient["film_db"] 
-    collection = db["contents"]
+    db = dbclient["film_db_test"] 
+    collection = db["films"]
     expected_id = collection.find_one(content)["_id"]
     assert response.json()['content_id'] == str(expected_id)
 
@@ -47,8 +47,8 @@ def test_read_details_contents_success_and_verify_count():
     assert response.status_code == 200
 
     dbclient = MongoClient("mongodb://localhost:27017/")
-    db = dbclient["film_db"]
-    collection = db["contents"]
+    db = dbclient["film_db_test"]
+    collection = db["films"]
     expected_count = collection.count_documents({"_id": ObjectId("656efee0b171fd8c704b2b2c")})
     assert len(response.json()['contents']) == expected_count
 
@@ -69,8 +69,8 @@ def test_update_content_success_and_verify_count():
     assert response.status_code == 200
     
     dbclient = MongoClient("mongodb://localhost:27017/")
-    db = dbclient["film_db"]
-    collection = db["contents"]
+    db = dbclient["film_db_test"]
+    collection = db["films"]
     expected_count = collection.count_documents({"_id": ObjectId(content_id)})
     assert expected_count == 1
 
@@ -82,7 +82,7 @@ def test_delete_content_success_and_verify_count():
     assert response.status_code == 200
         
     dbclient = MongoClient("mongodb://localhost:27017/")
-    db = dbclient["film_db"]
-    collection = db["contents"]
+    db = dbclient["film_db_test"]
+    collection = db["films"]
     expected_count = collection.count_documents({"_id": ObjectId(content_id)})
     assert expected_count == 0
