@@ -1,7 +1,8 @@
 from pymongo import MongoClient
+from main import settings
 
-client = MongoClient("mongodb://localhost:27017/")
-db = client["film_db"]
-collection = db["contents"]
+client = MongoClient(settings.mongo_client)
+db = client[settings.db_name]
+collection = db[settings.collection_name]
 
 
