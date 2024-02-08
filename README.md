@@ -8,7 +8,15 @@ Install project:
 
 > cd Web-Services
 
-DB:
+**Setting Environment Variables:**
+
+`.env` file and define the following environment variables:
+  ```env
+  mongo_client='mongodb://localhost:27017/',
+  db_name='film_db_test',
+  collection_name='films'
+  ```
+        
 > MONGODB_URI=mongodb://localhost:27017/
 
 Run the application:
