@@ -4,9 +4,12 @@
 This project aims to create a simple CRUD (Create, Read, Update, Delete) API using FastAPI and MongoDB.
 
 Install project:
-> git clone https://github.com/Burcu8/Web-Services.git
-
-> cd Web-Services
+```
+git clone https://github.com/Burcu8/Web-Services.git
+```
+```
+cd Web-Services
+```
 
 **Loading the Requirements:**
 ```bash
@@ -21,11 +24,12 @@ Install project:
   db_name='film_db_test',
   collection_name='films'
   ```
-        
-> MONGODB_URI=mongodb://localhost:27017/
 
 Run the application:
-> uvicorn main:app --reload
+
+```
+uvicorn main:app --reload
+```
 
 Technologies:
 * Python 3.8+
