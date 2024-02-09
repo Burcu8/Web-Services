@@ -8,6 +8,11 @@ Install project:
 
 > cd Web-Services
 
+**Loading the Requirements:**
+```bash
+    pip install -r requirements.txt
+```
+
 **Setting Environment Variables:**
 
 `.env` file and define the following environment variables:
