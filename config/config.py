@@ -10,7 +10,7 @@ def get_config(config_name = 'development'):
 
     if environment == 'development':
         environment_config = dev_config
-    elif environment == ' production':
+    elif environment == 'production':
         environment_config = prod_config
 
     elif environment == 'test':
