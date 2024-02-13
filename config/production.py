@@ -1,3 +1,0 @@
-config = {
-    'host' : 'myapp.com'
-}
