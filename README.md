@@ -20,9 +20,12 @@ cd Web-Services
 
 `.env` file and define the following environment variables:
   ```env
-  mongo_client='mongodb://localhost:27017/',
-  db_name='film_db_test',
+  mongo_client='mongodb://localhost:27017/'
+  db_name='film_db_test'
   collection_name='films'
+  app_name=‘test’
+  host=‘test’
+  port=8000
   ```
 
 Run the application:
